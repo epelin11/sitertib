@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.DS_Store
+*.log
+*.err.log
+backend/mysql-data/
+backend/*.pid
+backend/*.err
