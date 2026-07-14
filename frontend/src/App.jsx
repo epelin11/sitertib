@@ -8,6 +8,7 @@ import Tentang from "./pages/Tentang";
 import IsiIdentitas from "./pages/IsiIdentitas";
 import Login from "./pages/Login";
 import DataSiswa from "./pages/DataSiswa";
+import ScanBarcode from "./pages/ScanBarcode";
 
 export default function App() {
   return (
@@ -25,6 +26,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <DataSiswa />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/scan-barcode"
+            element={
+              <ProtectedRoute>
+                <ScanBarcode />
               </ProtectedRoute>
             }
           />

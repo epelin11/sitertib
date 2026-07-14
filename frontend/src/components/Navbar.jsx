@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, DoorOpen } from "lucide-react";
+import { Menu, X, LogOut, DoorOpen, ScanLine } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 const navItems = [
   { to: "/", label: "Beranda" },
   { to: "/tentang", label: "Tentang" },
   { to: "/isi-identitas", label: "Isi Identitas" },
+  { to: "/scan-barcode", label: "Scan Barcode", protected: true },
   { to: "/data-siswa", label: "Data Siswa" },
 ];
 
@@ -39,7 +40,9 @@ export default function Navbar() {
 
         {/* Menu desktop */}
         <div className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
+          {navItems
+            .filter((item) => !item.protected || isAuthenticated)
+            .map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -51,6 +54,7 @@ export default function Navbar() {
                 }`
               }
             >
+              {item.to === "/scan-barcode" && <ScanLine className="mr-1 inline h-4 w-4 align-[-3px]" />}
               {item.label}
             </NavLink>
           ))}
@@ -85,7 +89,9 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-ink-100 bg-paper px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-1 pt-2">
-            {navItems.map((item) => (
+            {navItems
+              .filter((item) => !item.protected || isAuthenticated)
+              .map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -96,6 +102,7 @@ export default function Navbar() {
                   }`
                 }
               >
+                {item.to === "/scan-barcode" && <ScanLine className="mr-2 inline h-4 w-4 align-[-3px]" />}
                 {item.label}
               </NavLink>
             ))}

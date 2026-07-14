@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { DoorOpen, DoorClosed, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import api from "../api/axiosClient";
 
@@ -22,9 +23,19 @@ const FORM_AWAL = {
 };
 
 export default function IsiIdentitas() {
-  const [mode, setMode] = useState("keluar"); // "keluar" | "masuk"
-  const [form, setForm] = useState(FORM_AWAL);
-  const [nisnMasuk, setNisnMasuk] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialMode = searchParams.get("mode") === "masuk" ? "masuk" : "keluar";
+  const initialNisn = searchParams.get("nisn") || "";
+  const [mode, setMode] = useState(initialMode); // "keluar" | "masuk"
+  const [form, setForm] = useState({
+    ...FORM_AWAL,
+    nama: searchParams.get("nama") || FORM_AWAL.nama,
+    nisn: initialNisn,
+    jenis_kelamin: searchParams.get("jenis_kelamin") || FORM_AWAL.jenis_kelamin,
+    kelas: searchParams.get("kelas") || FORM_AWAL.kelas,
+    alasan: searchParams.get("alasan") || FORM_AWAL.alasan,
+  });
+  const [nisnMasuk, setNisnMasuk] = useState(initialNisn);
   const [status, setStatus] = useState(null); // { type: "success"|"error", message }
   const [loading, setLoading] = useState(false);
 
