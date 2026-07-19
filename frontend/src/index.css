@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-800;
+  }
+}
+
+@layer components {
+  /* Stempel ledger berputar — elemen signature SI TERTIB */
+  .stamp {
+    @apply inline-flex items-center justify-center rounded-full border-[3px] border-brass-500 text-brass-500 font-display font-semibold uppercase tracking-widest select-none;
+    transform: rotate(-8deg);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-ink-800 px-5 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-ink-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass-500 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brass-500 px-5 py-2.5 text-sm font-semibold text-ink-900 shadow-card transition hover:bg-brass-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-800 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink-800 transition hover:border-ink-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass-500;
+  }
+
+  .card {
+    @apply rounded-xl border border-ink-100 bg-white shadow-card;
+  }
+
+  .input-field {
+    @apply w-full rounded-md border border-ink-200 bg-white px-3.5 py-2.5 text-sm text-ink-800 placeholder:text-ink-400 transition focus:border-ink-800 focus:outline-none focus:ring-2 focus:ring-brass-200;
+  }
+
+  .label-field {
+    @apply mb-1.5 block text-sm font-medium text-ink-700;
+  }
+}
