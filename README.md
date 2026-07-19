@@ -93,6 +93,32 @@ VITE_API_URL=http://alamat-backend-anda/api
 6. **Riwayat** *(khusus guru login)* — daftar seluruh catatan keluar-masuk dari berbagai pengguna, bisa difilter per tanggal, kelas, atau dicari berdasarkan nama/NISN. Di bagian atas halaman ini juga ada **presentasi mingguan**: grafik batang jumlah pengisian data per hari (Senin–Minggu) pada minggu berjalan, persentase perubahan dibanding minggu lalu, dan tren beberapa minggu terakhir.
 7. **Scan Identitas** *(khusus guru login)* — guru dapat men-scan barcode/QR pada kartu siswa (via kamera, memakai `BarcodeDetector` API bawaan browser Chrome/Edge) atau mengetik NISN secara manual, lalu langsung mencatat siswa **keluar kelas** atau **masuk kembali** tanpa mengisi ulang nama/kelas/jenis kelamin. Jika NISN belum terdaftar, guru diarahkan ke form Isi Identitas dengan NISN sudah terisi otomatis.
 
+## 5. Deployment ke Production
+
+### Backend ke Render.com
+
+Untuk deploy backend ke Render (hosting gratis), lihat panduan lengkap di **[DEPLOY.md](./DEPLOY.md)**.
+
+**Quick Start:**
+1. Setup database MySQL di cloud (PlanetScale / Aiven / Railway)
+2. Login ke [Render Dashboard](https://dashboard.render.com)
+3. Buat Web Service dari repository GitHub ini
+4. Set environment variables dari `.env.production`
+5. Deploy!
+
+**Hasil:** API akan accessible di `https://sitertib-backend.onrender.com`
+
+### Frontend ke Vercel / Netlify / Render
+
+Setelah backend live, update `frontend/.env.production`:
+```env
+VITE_API_URL=https://sitertib-backend.onrender.com/api
+```
+
+Lalu deploy frontend ke platform pilihan Anda (Vercel, Netlify, atau Render).
+
+---
+
 ## Catatan
 
 - Logo sekolah (Perguruan Dharma Bakti Lubuk Pakam) ditampilkan berdampingan dengan logo SI TERTIB pada navbar dan footer. File logo berada di `frontend/public/assets/logo-sekolah.png` — ganti file ini jika ingin memakai logo lain.
